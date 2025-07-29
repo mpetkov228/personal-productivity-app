@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
+import User from './models/User.js';
+
 
 dotenv.config()
 const app = express();
@@ -11,8 +13,10 @@ app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
 
-app.get('/users', (req, res) => {
-    res.send('Here are your users.');
+app.get('/users', async (req, res) => {
+    const data = await User.find({});
+    console.log(data);
+    res.json(data);
 });
 
 mongoose
