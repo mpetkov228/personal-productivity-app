@@ -3,11 +3,13 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
 import User from './models/User.js';
+import authRoutes from './routes/authRoutes.js';
 
 
 dotenv.config()
 const app = express();
 
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
     res.send('Hello, World!');
@@ -15,7 +17,6 @@ app.get('/', (req, res) => {
 
 app.get('/users', async (req, res) => {
     const data = await User.find({});
-    console.log(data);
     res.json(data);
 });
 
