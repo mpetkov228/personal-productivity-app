@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import jwt from 'jsonwebtoken';
 
 import User from './models/User.js';
 import authRoutes from './routes/authRoutes.js';
@@ -21,6 +22,25 @@ app.get('/', (req, res) => {
 app.get('/users', async (req, res) => {
     const data = await User.find({});
     res.json(data);
+});
+
+app.get('/protected', async (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const secretKey = process.env.SECRET_KEY;
+
+    try {
+        const decoded = jwt.decode(token, secretKey);
+        const email = decoded.email;
+        const user = await User.findOne({ email });
+
+        if (user) {
+            res.json({ message: `Welcome ${user.username}! This is a protected route.` });
+        } else {
+            res.status(401).json({ error: 'invalid token' });
+        }
+    } catch (error) {
+        res.status(401).json({ error: 'invalid token' });
+    }
 });
 
 mongoose
