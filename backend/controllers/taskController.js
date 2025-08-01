@@ -28,6 +28,17 @@ export const updateTask = async (req, res) => {
         await Task.findByIdAndUpdate(id, { title, description, status });
         res.status(200).json({ message: "task updated" });
     } catch (err) {
-        res.status(404).json({ error: err.message });
+        res.status(404).json({ error: "task not found" });
+    }
+};
+
+export const deleteTask = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        await Task.findByIdAndDelete(id);
+        res.json({ message: "task deleted" });
+    } catch (err) {
+        res.status(400).json({ error: "failed to delete task" });
     }
 };
