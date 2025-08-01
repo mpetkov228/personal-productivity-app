@@ -12,7 +12,22 @@ export const createTask = async (req, res) => {
 };
 
 export const getTasks = async (req, res) => {
-    const tasks = await Task.find({});
-    
-    res.json(tasks);
+    try {
+        const tasks = await Task.find({});
+        res.json(tasks);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+};
+
+export const updateTask = async (req, res) => {
+    const id = req.params.id;
+    const { title, description, status } = req.body;
+
+    try {
+        await Task.findByIdAndUpdate(id, { title, description, status });
+        res.status(200).json({ message: "task updated" });
+    } catch (err) {
+        res.status(404).json({ error: err.message });
+    }
 };
