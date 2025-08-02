@@ -4,7 +4,7 @@ export const createTask = async (req, res) => {
     const { title, description, status, dueDate } = req.body;
 
     try {
-        await Task.create({ title, description, status, dueDate });
+        await Task.create({ title, description, status, dueDate, userId: req.userId });
         res.status(201).json({ message: 'task created' });
     } catch (err) {
         res.status(400).json({ error: err.message });
