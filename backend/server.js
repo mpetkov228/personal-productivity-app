@@ -8,6 +8,7 @@ import User from './models/User.js';
 import authRoutes from './routes/authRoutes.js';
 import taskRoutes from './routes/taskRoutes.js';
 import habitRoutes from './routes/habitRoutes.js';
+import timerRoutes from './routes/timerRoutes.js';
 
 dotenv.config()
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/habits', habitRoutes);
+app.use('/api/timers', timerRoutes);
 
 app.get('/', (req, res) => {
     res.send('Hello, World!');
