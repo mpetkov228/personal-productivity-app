@@ -28,19 +28,19 @@ export default function Login() {
 
   return (
     <div className="flex h-screen w-screen justify-center items-center bg-gray-100">
-      <form onSubmit={handleLogin} className="bg-white p-6 rounded shadow-md w-80">
+      <form onSubmit={handleLogin} className="bg-white p-8 rounded shadow-md w-100">
         <h2 className="text-xl font-bold mb-4">Welcome back</h2>
         <input
           type="email"
           placeholder="Email"
-          className="mb-2 w-full p-2 border rounded"
+          className="mb-4 w-full p-2 border rounded"
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
         <input 
           type="password" 
           placeholder="Password" 
-          className="mb-2 w-full p-2 border rounded"
+          className="mb-4 w-full p-2 border rounded"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
