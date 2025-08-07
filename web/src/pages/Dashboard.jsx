@@ -1,5 +1,10 @@
 export default function Dashboard() {
   return (
-    <div>Dashboard page</div>
+    <div>
+      <div className="w-screen flex justify-between">
+        <div>Hello, User!</div>
+        <div>Profile icon</div>
+      </div>
+    </div>
   );
 }

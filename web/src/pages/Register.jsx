@@ -61,7 +61,7 @@ export default function Register() {
           value={confirmPassword}
           onChange={e => setConfirmPassword(e.target.value)}
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded w-full cursor-pointer">Log in</button>
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded w-full cursor-pointer">Sign up</button>
       </form>
     </div>
   );
